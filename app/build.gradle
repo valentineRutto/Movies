@@ -4,6 +4,10 @@ plugins {
     id 'kotlin-kapt'
 }
 
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
 android {
     compileSdk 32
 
@@ -13,6 +17,9 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+
+        buildConfigField("String", "TMDB_API_KEY", apikeyProperties['TMDB_API_KEY'])
+
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

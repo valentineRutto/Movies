@@ -29,12 +29,6 @@ class MoviesListRepository(
         return Resource.Success(data = moviesListEntity)
     }
 
-    suspend fun getMovies(): Resource<List<MoviesListEntity>> {
-        val moviesList = moviesListDao.getMoviesList()
-        return Resource.Success(moviesList)
-
-    }
-
     suspend fun fetchMovie(id: Int): Resource<MoviesListEntity> {
         val movie = moviesListDao.getMovieById(id)
         return Resource.Success(data = movie)

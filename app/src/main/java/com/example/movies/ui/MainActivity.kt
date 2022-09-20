@@ -1,27 +1,23 @@
-package com.example.movies
+package com.example.movies.ui
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.movies.R
 import com.example.movies.databinding.ActivityMainBinding
-import com.example.movies.ui.MoviesViewModel
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private val moviesViewmodel by viewModel<MoviesViewModel>()
+    private val moviesViewModel by viewModel<MoviesViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -32,17 +28,12 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        moviesViewModel.fetchMovieList()
+
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.fab.setOnClickListener { view ->
-            lifecycleScope.launch(Dispatchers.IO) {
-                val result = moviesViewmodel.getMovies()
-                Snackbar.make(view, result.toString(), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-            }
-        }
     }
 
 

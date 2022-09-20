@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.movies.databinding.ActivityMainBinding
 import com.example.movies.ui.MoviesViewModel
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,8 +37,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.fab.setOnClickListener { view ->
-            lifecycleScope.launch {
-                val result = moviesViewmodel.getMovies().body()?.genres
+            lifecycleScope.launch(Dispatchers.IO) {
+                val result = moviesViewmodel.getMovies()
                 Snackbar.make(view, result.toString(), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
             }

@@ -57,7 +57,7 @@ class MoviesViewModel(private val moviesListRepository: MoviesListRepository) : 
         }
     }
 
-    suspend fun getMovieById(id: Int) {
+    private suspend fun getMovieById(id: Int) {
         when (val movie = moviesListRepository.fetchMovie(id)) {
             is Resource.Success -> {
                 _isLoading.postValue(false)

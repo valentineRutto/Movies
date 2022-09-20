@@ -22,6 +22,7 @@ class MoviesListRepository(
 
         if (!response.isSuccessful) return Resource.Error(errorMessage = response.message())
 
+
         val moviesListEntity = mapResponseToEntity(response.body())
 
         moviesListDao.saveMoviesList(moviesListEntity)

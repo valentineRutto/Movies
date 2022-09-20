@@ -22,13 +22,13 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
+            android:contentDescription="Movie Image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/detailsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/design_default_color_primary"
             app:layout_constraintTop_toBottomOf="@+id/image">
 
             <TextView
@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="Ricky"
+                android:textColor="@color/white"
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

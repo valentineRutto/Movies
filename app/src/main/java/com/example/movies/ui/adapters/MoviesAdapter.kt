@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.movies.data.local.MoviesListEntity
 import com.example.movies.databinding.RowMovieBinding
+
 
 interface onItemClick {
     fun onMovieClick(id: Int, movie: MoviesListEntity)
@@ -28,7 +30,7 @@ class MoviesAdapter(var itemClickLister: onItemClick) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(movie: MoviesListEntity, itemClickLister: onItemClick) {
-
+            binding.image.load("https://image.tmdb.org/t/p/w200/${movie.poster}")
             binding.txtName.text = movie.title
             binding.container.setOnClickListener {
                 itemClickLister.onMovieClick(movie.id, movie)

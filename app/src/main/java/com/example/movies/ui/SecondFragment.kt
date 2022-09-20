@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.example.movies.R
+import coil.load
 import com.example.movies.databinding.FragmentSecondBinding
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -15,6 +15,7 @@ import com.example.movies.databinding.FragmentSecondBinding
 class SecondFragment : Fragment() {
 
     private var _binding: FragmentSecondBinding? = null
+    private val moviesViewmodel by sharedViewModel<MoviesViewModel>()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -33,8 +34,10 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        moviesViewmodel.movie.observe(viewLifecycleOwner) { movie ->
+            binding.txtName.text = movie?.title
+            binding.txtOverview.text = movie?.overView
+            binding.image.load("https://image.tmdb.org/t/p/w200/${movie?.poster}")
         }
     }
 

@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.movies.R
+import com.example.movies.data.local.MoviesListEntity
 import com.example.movies.databinding.FragmentFirstBinding
 import com.example.movies.ui.adapters.MoviesAdapter
+import com.example.movies.ui.adapters.onItemClick
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
@@ -36,13 +40,17 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        moviesAdapter = MoviesAdapter()
+        moviesAdapter = MoviesAdapter(object : onItemClick {
+            override fun onMovieClick(id: Int, movie: MoviesListEntity) {
+                moviesViewmodel.movie.value = movie
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            }
+
+        })
 
         setupObservables()
 
-//        binding.buttonFirst.setOnClickListener {
-//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-//        }
+
     }
 
     fun setupObservables() {

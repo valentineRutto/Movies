@@ -1,9 +1,9 @@
 package com.example.movies.di
 
 import com.example.movies.App
-import com.example.movies.data.network.ApiService
 import com.example.movies.data.network.RetrofitClient.createOkClient
 import com.example.movies.data.network.RetrofitClient.createRetrofit
+import com.example.movies.data.network.api.ApiService
 import com.example.movies.ui.MoviesViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

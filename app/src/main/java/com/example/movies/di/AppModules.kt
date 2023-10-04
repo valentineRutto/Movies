@@ -22,7 +22,7 @@ val appModules = module {
 
     single {
         createRetrofit(
-            baseUrl = "https://api.themoviedb.org/",
+            baseUrl = "https://api.themoviedb.org/3/",
             get()
         )
     }

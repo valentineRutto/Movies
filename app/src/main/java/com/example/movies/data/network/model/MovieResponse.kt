@@ -1,91 +1,131 @@
 package com.example.movies.data.network.model
 
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class MovieResponse(
-    @SerializedName("adult")
+    @SerialName("adult")
     val adult: Boolean?,
-    @SerializedName("backdrop_path")
+    @SerialName("backdrop_path")
     val backdropPath: String?,
-    @SerializedName("belongs_to_collection")
+    @Contextual
+    @SerialName("belongs_to_collection")
     val belongsToCollection: Any?,
-    @SerializedName("budget")
+    @SerialName("budget")
     val budget: Int?,
-    @SerializedName("genres")
+    @SerialName("genres")
     val genres: List<Genre?>?,
-    @SerializedName("homepage")
+    @SerialName("homepage")
     val homepage: String?,
-    @SerializedName("id")
+    @SerialName("id")
     val id: Int?,
-    @SerializedName("imdb_id")
+    @SerialName("imdb_id")
     val imdbId: String?,
-    @SerializedName("original_language")
+    @SerialName("original_language")
     val originalLanguage: String?,
-    @SerializedName("original_title")
+    @SerialName("original_title")
     val originalTitle: String?,
-    @SerializedName("overview")
+    @SerialName("overview")
     val overview: String?,
-    @SerializedName("popularity")
+    @SerialName("popularity")
     val popularity: Double?,
-    @SerializedName("poster_path")
+    @SerialName("poster_path")
     val posterPath: String?,
-    @SerializedName("production_companies")
+    @SerialName("production_companies")
     val productionCompanies: List<ProductionCompany?>?,
-    @SerializedName("production_countries")
+    @SerialName("production_countries")
     val productionCountries: List<ProductionCountry?>?,
-    @SerializedName("release_date")
+    @SerialName("release_date")
     val releaseDate: String?,
-    @SerializedName("revenue")
+    @SerialName("revenue")
     val revenue: Int?,
-    @SerializedName("runtime")
+    @SerialName("runtime")
     val runtime: Int?,
-    @SerializedName("spoken_languages")
+    @SerialName("spoken_languages")
     val spokenLanguages: List<SpokenLanguage?>?,
-    @SerializedName("status")
+    @SerialName("status")
     val status: String?,
-    @SerializedName("tagline")
+    @SerialName("tagline")
     val tagline: String?,
-    @SerializedName("title")
+    @SerialName("title")
     val title: String?,
-    @SerializedName("video")
+    @SerialName("video")
     val video: Boolean?,
-    @SerializedName("vote_average")
+    @SerialName("videos")
+    val videos: Videos?,
+    @SerialName("vote_average")
     val voteAverage: Double?,
-    @SerializedName("vote_count")
+    @SerialName("vote_count")
     val voteCount: Int?
 ) {
+    @Serializable
     data class Genre(
-        @SerializedName("id")
+        @SerialName("id")
         val id: Int?,
-        @SerializedName("name")
+        @SerialName("name")
         val name: String?
     )
 
+    @Serializable
     data class ProductionCompany(
-        @SerializedName("id")
+        @SerialName("id")
         val id: Int?,
-        @SerializedName("logo_path")
+        @SerialName("logo_path")
         val logoPath: String?,
-        @SerializedName("name")
+        @SerialName("name")
         val name: String?,
-        @SerializedName("origin_country")
+        @SerialName("origin_country")
         val originCountry: String?
     )
 
+    @Serializable
     data class ProductionCountry(
-        @SerializedName("iso_3166_1")
+        @SerialName("iso_3166_1")
         val iso31661: String?,
-        @SerializedName("name")
+        @SerialName("name")
         val name: String?
     )
 
+    @Serializable
     data class SpokenLanguage(
-        @SerializedName("english_name")
+        @SerialName("english_name")
         val englishName: String?,
-        @SerializedName("iso_639_1")
+        @SerialName("iso_639_1")
         val iso6391: String?,
-        @SerializedName("name")
+        @SerialName("name")
         val name: String?
     )
+
+    @Serializable
+    data class Videos(
+        @SerialName("results")
+        val results: List<Result?>?
+    ) {
+        @Serializable
+        data class Result(
+            @SerialName("id")
+            val id: String?,
+            @SerialName("iso_3166_1")
+            val iso31661: String?,
+            @SerialName("iso_639_1")
+            val iso6391: String?,
+            @SerialName("key")
+            val key: String?,
+            @SerialName("name")
+            val name: String?,
+            @SerialName("official")
+            val official: Boolean?,
+            @SerialName("published_at")
+            val publishedAt: String?,
+            @SerialName("site")
+            val site: String?,
+            @SerialName("size")
+            val size: Int?,
+            @SerialName("type")
+            val type: String?
+        )
+    }
 }

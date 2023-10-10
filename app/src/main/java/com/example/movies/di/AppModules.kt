@@ -8,12 +8,12 @@ import com.example.movies.data.network.RetrofitClient.createOkClient
 import com.example.movies.data.network.RetrofitClient.createRetrofit
 import com.example.movies.data.network.api.ApiService
 import com.example.movies.ui.MoviesViewModel
+import com.example.movies.utils.Constants
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
-private const val DB_NAME = "movies_list"
 val appModules = module {
 
     single { App.INSTANCE }
@@ -22,12 +22,12 @@ val appModules = module {
 
     single {
         createRetrofit(
-            baseUrl = "https://api.themoviedb.org/3/",
+            baseUrl = Constants.BASE_URL,
             get()
         )
     }
     single {
-        Room.databaseBuilder(androidContext(), MoviesListDatabase::class.java, DB_NAME).build()
+        Room.databaseBuilder(androidContext(), MoviesListDatabase::class.java, Constants.DB_NAME).build()
     }
 
     single { get<MoviesListDatabase>().moviesListDao }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import coil.load
 import com.example.movies.databinding.FragmentSecondBinding
+import com.example.movies.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
@@ -35,9 +36,10 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         moviesViewmodel.movie.observe(viewLifecycleOwner) { movie ->
-            binding.txtName.text = movie?.title
-            binding.txtOverview.text = movie?.overView
-            binding.image.load("https://image.tmdb.org/t/p/w200/${movie?.poster}")
+            binding.txtName.text = movie?.videoName
+            binding.txtOverview.text = movie?.overview
+            binding.image.load(Constants.getYoutubeThumbnailPath(movie?.posterPath))
+            //   binding.image.load("https://image.tmdb.org/t/p/w200/${movie?.poster}")
         }
     }
 

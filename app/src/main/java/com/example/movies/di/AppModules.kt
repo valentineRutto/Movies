@@ -27,10 +27,20 @@ val appModules = module {
         )
     }
     single {
-        Room.databaseBuilder(androidContext(), MoviesListDatabase::class.java, Constants.DB_NAME).build()
+        Room.databaseBuilder(androidContext(), MoviesListDatabase::class.java, Constants.DB_NAME)
+            .build()
     }
 
     single { get<MoviesListDatabase>().moviesListDao }
-    single { MoviesListRepository(apiService = get(), moviesListDao = get()) }
+
+    single { get<MoviesListDatabase>().movieDetailsDao }
+
+    single {
+        MoviesListRepository(
+            apiService = get(),
+            moviesListDao = get(),
+            movieDetailsDao = get()
+        )
+    }
     viewModel { MoviesViewModel(moviesListRepository = get()) }
 }

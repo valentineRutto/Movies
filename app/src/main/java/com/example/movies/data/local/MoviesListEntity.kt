@@ -13,5 +13,4 @@ data class MoviesListEntity(
     val releasedDate: String,
     val poster: String,
     val overView: String
-
 )

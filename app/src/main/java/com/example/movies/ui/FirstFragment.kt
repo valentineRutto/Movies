@@ -42,7 +42,9 @@ class FirstFragment : Fragment() {
 
         moviesAdapter = MoviesAdapter(object : onItemClick {
             override fun onMovieClick(id: Int, movie: MoviesListEntity) {
-                moviesViewmodel.movie.value = movie
+                moviesViewmodel.fetchMovieById(id)
+
+                // moviesViewmodel.movie.value = movie
                 findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
             }
 
@@ -53,7 +55,7 @@ class FirstFragment : Fragment() {
 
     }
 
-    fun setupObservables() {
+    private fun setupObservables() {
 
         moviesViewmodel.isLoading.observe(viewLifecycleOwner) { showLoading ->
             binding.moviesProgressBar.isVisible = showLoading

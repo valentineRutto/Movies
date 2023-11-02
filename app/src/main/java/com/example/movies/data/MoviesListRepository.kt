@@ -1,15 +1,19 @@
 package com.example.movies.data
 
 import com.example.movies.BuildConfig
+import com.example.movies.data.local.MovieDetailsDao
+import com.example.movies.data.local.MovieDetailsEntity
 import com.example.movies.data.local.MoviesListDao
 import com.example.movies.data.local.MoviesListEntity
+import com.example.movies.data.mappers.mapResponseToEntity
+import com.example.movies.data.mappers.mapResponseToVideoDetailsEntity
 import com.example.movies.data.network.Resource
 import com.example.movies.data.network.api.ApiService
-import com.example.movies.data.network.model.MovieResponse
-import com.example.movies.data.network.model.PopularMoviesListResponse
 
 class MoviesListRepository(
-    private val apiService: ApiService, private val moviesListDao: MoviesListDao
+    private val apiService: ApiService,
+    private val moviesListDao: MoviesListDao,
+    private val movieDetailsDao: MovieDetailsDao
 ) {
 
     suspend fun getSaveMoviesList(): Resource<List<MoviesListEntity>> {
@@ -22,19 +26,17 @@ class MoviesListRepository(
 
         if (!response.isSuccessful) return Resource.Error(errorMessage = response.message())
 
-        response.body()?.results?.forEach {
-
-
-        }
-
         val moviesListEntity = mapResponseToEntity(response.body())
 
         moviesListDao.saveMoviesList(moviesListEntity)
 
+        getSaveMovieDetails()
+
         return Resource.Success(data = moviesListEntity)
     }
 
-    suspend fun fetchMovieById(id: Int): Resource<MovieResponse> {
+    suspend fun fetchMovieById(id: Int): Resource<MovieDetailsEntity> {
+
         val details = apiService.getVideoUrl(
             id,
             apiKey = BuildConfig.TMDB_API_KEY,
@@ -43,28 +45,26 @@ class MoviesListRepository(
 
         if (!details.isSuccessful) return Resource.Error(errorMessage = details.message())
 
-        return Resource.Success(data = details.body()!!)
+        val movieDetails = mapResponseToVideoDetailsEntity(details.body()!!)
+
+        movieDetailsDao.saveMovieDetailsList(movieDetails)
+
+        return Resource.Success(data = movieDetails)
 
     }
 
-    suspend fun fetchMovie(id: Int): Resource<MoviesListEntity> {
-        val movie = moviesListDao.getMovieById(id)
+    suspend fun getSaveMovieDetails() {
+
+        moviesListDao.getMoviesList().forEach { moviesListEntity ->
+            fetchMovieById(moviesListEntity.id)
+        }
+
+    }
+
+    suspend fun fetchMovie(id: Int): Resource<MovieDetailsEntity> {
+        val movie = movieDetailsDao.getMovieById(id)
         return Resource.Success(data = movie)
     }
 
-    private fun mapResponseToEntity(moviesListResponse: PopularMoviesListResponse?): List<MoviesListEntity> {
-        return moviesListResponse?.results?.map { movie ->
-            MoviesListEntity(
-                id = movie.id,
-                title = movie.originalTitle,
-                language = movie.originalLanguage,
-                releasedDate = movie.releaseDate,
-                overView = movie.overview,
-                poster = movie.posterPath,
-                popularity = movie.popularity.toString()
-            )
-
-        } ?: emptyList<MoviesListEntity>()
-    }
 
 }

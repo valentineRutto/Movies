@@ -1,12 +1,14 @@
 package com.example.movies.data.local
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "movieDetails")
 data class MovieDetailsEntity(
     val videoName: String,
     val site: String,
     val movieId: Int,
+    @PrimaryKey
     val videoId: String,
     val type: String,
     val videoPath: String,

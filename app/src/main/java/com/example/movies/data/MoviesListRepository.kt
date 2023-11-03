@@ -62,7 +62,10 @@ class MoviesListRepository(
     }
 
     suspend fun fetchMovie(id: Int): Resource<MovieDetailsEntity> {
+        fetchMovieById(id)
+
         val movie = movieDetailsDao.getMovieById(id)
+
         return Resource.Success(data = movie)
     }
 

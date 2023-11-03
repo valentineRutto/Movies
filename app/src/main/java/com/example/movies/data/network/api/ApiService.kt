@@ -15,14 +15,14 @@ interface ApiService {
         @Query("api_key") apiKey: String
     ): Response<PopularMoviesListResponse>
 
-    @GET("/movie/{movie_id}")
+    @GET("/3/movie/{movie_id}")
     suspend fun getVideoUrl(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String,
         @Query("append_response") appendResponse: String
     ): Response<MovieResponse>
 
-    @GET("/movie/{movie_id}/watch/providers")
+    @GET("/3/movie/{movie_id}/watch/providers")
     suspend fun getWatchProviders(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String

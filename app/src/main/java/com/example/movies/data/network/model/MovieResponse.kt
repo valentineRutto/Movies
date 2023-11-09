@@ -55,7 +55,7 @@ data class MovieResponse(
     @SerialName("video")
     val video: Boolean?,
     @SerialName("videos")
-    val videos: Videos?,
+    val videos: Videos? = null,
     @SerialName("vote_average")
     val voteAverage: Double?,
     @SerialName("vote_count")

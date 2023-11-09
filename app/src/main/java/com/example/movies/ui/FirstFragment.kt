@@ -42,9 +42,6 @@ class FirstFragment : Fragment() {
 
         moviesAdapter = MoviesAdapter(object : onItemClick {
             override fun onMovieClick(id: Int, movie: MoviesListEntity) {
-                moviesViewmodel.fetchMovieById(id)
-
-                // moviesViewmodel.movie.value = movie
                 findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
             }
 

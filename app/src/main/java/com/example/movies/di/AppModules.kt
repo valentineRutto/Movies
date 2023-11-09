@@ -44,3 +44,5 @@ val appModules = module {
     }
     viewModel { MoviesViewModel(moviesListRepository = get()) }
 }
+
+

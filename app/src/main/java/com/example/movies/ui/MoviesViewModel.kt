@@ -51,24 +51,5 @@ class MoviesViewModel(private val moviesListRepository: MoviesListRepository) : 
         }
     }
 
-    fun fetchMovieById(id: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            _isLoading.postValue(true)
-            getMovieById(id)
-        }
-    }
-
-    private suspend fun getMovieById(id: Int) {
-        when (val movie = moviesListRepository.fetchMovie(id)) {
-            is Resource.Success -> {
-                _isLoading.postValue(false)
-                _movie.postValue(movie.data)
-            }
-            is Resource.Error -> {
-                _isLoading.postValue(false)
-                _errorMovieListResponse.postValue(movie.errorMessage)
-            }
-        }
-    }
 
 }

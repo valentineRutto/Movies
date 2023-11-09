@@ -30,44 +30,7 @@ class MoviesListRepository(
 
         moviesListDao.saveMoviesList(moviesListEntity)
 
-        getSaveMovieDetails()
-
         return Resource.Success(data = moviesListEntity)
     }
-
-    suspend fun fetchMovieById(id: Int): Resource<MovieDetailsEntity> {
-
-        val details = apiService.getVideoUrl(
-            id,
-            apiKey = BuildConfig.TMDB_API_KEY,
-            appendResponse = "videos"
-        )
-
-        if (!details.isSuccessful) return Resource.Error(errorMessage = details.message())
-
-        val movieDetails = mapResponseToVideoDetailsEntity(details.body()!!)
-
-        movieDetailsDao.saveMovieDetailsList(movieDetails)
-
-        return Resource.Success(data = movieDetails)
-
-    }
-
-    suspend fun getSaveMovieDetails() {
-
-        moviesListDao.getMoviesList().forEach { moviesListEntity ->
-            fetchMovieById(moviesListEntity.id)
-        }
-
-    }
-
-    suspend fun fetchMovie(id: Int): Resource<MovieDetailsEntity> {
-        fetchMovieById(id)
-
-        val movie = movieDetailsDao.getMovieById(id)
-
-        return Resource.Success(data = movie)
-    }
-
 
 }

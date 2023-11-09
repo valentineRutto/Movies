@@ -27,8 +27,8 @@ fun mapResponseToVideoDetailsEntity(movie: MovieResponse?): MovieDetailsEntity {
         site = videoDetails?.site,
         movieId = movie.id!!,
         videoId = videoDetails?.id!!,
-        type = videoDetails?.type!!,
-        videoPath = videoDetails?.key!!, posterPath = movie.posterPath!!, overview = movie.overview!!
+        type = videoDetails.type!!,
+        videoPath = videoDetails.key!!, posterPath = movie.posterPath!!, overview = movie.overview!!
     )
 
 }

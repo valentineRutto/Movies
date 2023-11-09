@@ -15,11 +15,9 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 
 val appModules = module {
-
     single { App.INSTANCE }
     single<ApiService> { (get() as Retrofit).create(ApiService::class.java) }
     single { createOkClient() }
-
     single {
         createRetrofit(
             baseUrl = Constants.BASE_URL,
@@ -27,19 +25,18 @@ val appModules = module {
         )
     }
     single {
-        Room.databaseBuilder(androidContext(), MoviesListDatabase::class.java, Constants.DB_NAME)
+        Room.databaseBuilder(
+            androidContext(),
+            MoviesListDatabase::class.java, Constants.DB_NAME
+        )
             .build()
     }
-
     single { get<MoviesListDatabase>().moviesListDao }
-
-    single { get<MoviesListDatabase>().movieDetailsDao }
 
     single {
         MoviesListRepository(
             apiService = get(),
             moviesListDao = get(),
-            movieDetailsDao = get()
         )
     }
     viewModel { MoviesViewModel(moviesListRepository = get()) }

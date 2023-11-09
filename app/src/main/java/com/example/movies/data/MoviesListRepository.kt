@@ -1,19 +1,15 @@
 package com.example.movies.data
 
 import com.example.movies.BuildConfig
-import com.example.movies.data.local.MovieDetailsDao
-import com.example.movies.data.local.MovieDetailsEntity
 import com.example.movies.data.local.MoviesListDao
 import com.example.movies.data.local.MoviesListEntity
 import com.example.movies.data.mappers.mapResponseToEntity
-import com.example.movies.data.mappers.mapResponseToVideoDetailsEntity
 import com.example.movies.data.network.Resource
 import com.example.movies.data.network.api.ApiService
 
 class MoviesListRepository(
     private val apiService: ApiService,
     private val moviesListDao: MoviesListDao,
-    private val movieDetailsDao: MovieDetailsDao
 ) {
 
     suspend fun getSaveMoviesList(): Resource<List<MoviesListEntity>> {

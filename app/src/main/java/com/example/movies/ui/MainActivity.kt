@@ -21,9 +21,6 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MoviesTheme {
-//...
-
-
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {

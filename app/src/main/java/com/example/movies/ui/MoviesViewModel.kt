@@ -2,8 +2,6 @@ package com.example.movies.ui
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movies.data.MoviesListRepository
@@ -11,26 +9,23 @@ import com.example.movies.data.local.MoviesListEntity
 import com.example.movies.data.network.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
+//Koin viewmodel
+//class MoviesViewModel(private val moviesListRepository: MoviesListRepository) :
+//    ViewModel() {
 @HiltViewModel
 class MoviesViewModel @Inject constructor(private val moviesListRepository: MoviesListRepository) :
     ViewModel() {
-    private val _movieList = MutableStateFlow<List<MoviesListEntity>>(emptyList())
-    val moviesList = _movieList
+
     private val _state = mutableStateOf(MovieUiState())
     val state: State<MovieUiState> = _state
 
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> get() = _errorMessage
-
-    suspend fun getMovies() {
+    private suspend fun getMovies() {
         when (val popularMoviesResponse = moviesListRepository.getSaveMoviesList()) {
             is Resource.Success -> {
                 _state.value = state.value.copy(
-                    moviesList = popularMoviesResponse.data ?: emptyList(),
+                    moviesList = popularMoviesResponse.data,
                     isLoading = false
                 )
 

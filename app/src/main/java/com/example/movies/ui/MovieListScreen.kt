@@ -36,9 +36,6 @@ fun MovieListScreen(
 
     val state = viewModel.state.value
 
-
-    //  val movies = viewModel.moviesList.collectAsState().value
-
     LazyColumn(modifier = modifier.padding(16.dp)) {
         itemsIndexed(state.moviesList) { index, movie ->
             movieItem(

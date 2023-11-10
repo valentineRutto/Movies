@@ -18,8 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//koin
-        //val moviesViewModel: MoviesViewModel by viewModel()
+
         //hilt
         val moviesViewModel: MoviesViewModel by viewModels()
 
@@ -28,7 +27,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    MovieListScreen(modifier = Modifier.fillMaxSize(), viewModel = moviesViewModel)
+                    MovieListScreen(modifier = Modifier.fillMaxSize(), moviesViewModel)
                 }
             }
         }

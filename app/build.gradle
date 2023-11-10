@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlinx-serialization'
-id 'com.google.dagger.hilt.android'
+    id 'com.google.dagger.hilt.android'
 }
 
 def apikeyPropertiesFile = rootProject.file("apikey.properties")

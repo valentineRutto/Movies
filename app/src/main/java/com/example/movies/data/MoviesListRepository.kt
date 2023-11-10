@@ -10,19 +10,18 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
-import javax.inject.Inject
 
-//Koin di
-// class MoviesListRepository (
-//    private val apiService: ApiService,
-//    private val moviesListDao: MoviesListDao,
-//) {
-
-//Hilt DI
-class MoviesListRepository @Inject constructor(
+//Koin & manual di
+class MoviesListRepository(
     private val apiService: ApiService,
     private val moviesListDao: MoviesListDao,
 ) {
+
+    //Hilt DI
+//class MoviesListRepository @Inject constructor(
+//    private val apiService: ApiService,
+//    private val moviesListDao: MoviesListDao,
+//) {
     suspend fun getSaveMovies(): Flow<Resource<List<MoviesListEntity>>> = flow {
         emit(Resource.Loading())
         try {

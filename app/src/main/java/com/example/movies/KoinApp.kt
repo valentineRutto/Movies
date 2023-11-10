@@ -7,16 +7,17 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
-class App: Application() {
+class KoinApp : Application() {
     companion object {
-        lateinit var INSTANCE: App
+        lateinit var INSTANCE: KoinApp
     }
+
     override fun onCreate() {
         super.onCreate()
         INSTANCE = this
         startKoin {
             androidLogger(level = Level.DEBUG)
-            androidContext(this@App)
+            androidContext(this@KoinApp)
             modules(appModules)
         }
     }

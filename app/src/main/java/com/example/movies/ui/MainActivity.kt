@@ -3,6 +3,7 @@ package com.example.movies.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -11,13 +12,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.movies.ui.ui.theme.MoviesTheme
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val moviesViewModel: MoviesViewModel by viewModel()
+//koin
+        //val moviesViewModel: MoviesViewModel by viewModel()
+        //hilt
+        val moviesViewModel: MoviesViewModel by viewModels()
 
         setContent {
             MoviesTheme {

@@ -1,7 +1,7 @@
 package com.example.movies.di
 
 import androidx.room.Room
-import com.example.movies.App
+import com.example.movies.KoinApp
 import com.example.movies.data.MoviesListRepository
 import com.example.movies.data.local.MoviesListDatabase
 import com.example.movies.data.network.RetrofitClient.createOkClient
@@ -15,7 +15,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 
 val appModules = module {
-    single { App.INSTANCE }
+    single { KoinApp.INSTANCE }
     single<ApiService> { (get() as Retrofit).create(ApiService::class.java) }
     single { createOkClient() }
     single {

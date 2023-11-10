@@ -15,7 +15,6 @@ import androidx.compose.material.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,10 +34,13 @@ fun MovieListScreen(
         viewModel.fetchMovieList()
     }
 
-    val movies = viewModel.moviesList.collectAsState().value
+    val state = viewModel.state.value
+
+
+    //  val movies = viewModel.moviesList.collectAsState().value
 
     LazyColumn(modifier = modifier.padding(16.dp)) {
-        itemsIndexed(movies) { index, movie ->
+        itemsIndexed(state.moviesList) { index, movie ->
             movieItem(
                 modifier = modifier,
                 movie = movie,

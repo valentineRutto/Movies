@@ -8,7 +8,7 @@ import com.example.movies.data.network.api.ApiService
 import com.example.movies.utils.Constants
 import okhttp3.OkHttpClient
 
-class ManualModule(private val context: Context) {
+class ManualContainer(private val context: Context) {
     val provideOKhttpclient: OkHttpClient by lazy {
         RetrofitClient.createOkClient()
     }
@@ -18,10 +18,7 @@ class ManualModule(private val context: Context) {
 
     val provideRetrofitService: ApiService by lazy {
         retrofit.create(ApiService::class.java)
-
     }
-
-    //val application = Application()
 
     val provideMoviesDatabase by lazy {
         MoviesListDatabase.getDatabase(context)
@@ -34,3 +31,4 @@ class ManualModule(private val context: Context) {
     }
 
 }
+

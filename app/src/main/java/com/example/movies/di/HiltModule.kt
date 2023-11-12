@@ -14,13 +14,13 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import javax.inject.Singleton
-
+//a class annotated by module that tells hilt how to provide instances of certain types
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(SingletonComponent::class) //the instances are available in the singleton container
 object HiltModule {
     //Network Module
     @Provides
-    @Singleton
+    @Singleton//use the same instance of the component
     fun provideOKHttpClient() = RetrofitClient.createOkClient()
 
     @Provides

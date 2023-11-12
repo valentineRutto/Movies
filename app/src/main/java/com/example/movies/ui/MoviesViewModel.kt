@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 //Koin &manual viewmodel
 class MoviesViewModel(private val moviesListRepository: MoviesListRepository) :
     ViewModel() {
+
 //@HiltViewModel
 //class MoviesViewModel @Inject constructor(private val moviesListRepository: MoviesListRepository) :
 //    ViewModel() {

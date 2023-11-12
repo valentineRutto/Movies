@@ -23,7 +23,9 @@ class MoviesListRepository(
 //    private val moviesListDao: MoviesListDao,
 //) {
     suspend fun getSaveMovies(): Flow<Resource<List<MoviesListEntity>>> = flow {
+
         emit(Resource.Loading())
+
         try {
             val response = apiService.getMovies(apiKey = BuildConfig.TMDB_API_KEY)
             val moviesListEntity = mapResponseToEntity(response.body())

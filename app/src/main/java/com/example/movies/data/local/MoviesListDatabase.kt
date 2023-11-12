@@ -1,6 +1,7 @@
 package com.example.movies.data.local
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -9,15 +10,11 @@ import com.example.movies.utils.Constants
 
 @Database(
     exportSchema = false,
-    version = 1,
-    entities = [MoviesListEntity::class]
-//    autoMigrations = [
-//        AutoMigration (
-//            from = 1,
-//            to = 2,
-//            spec = MoviesListDatabase.MyAutoMigration::class
-//        )
-//    ]
+    version = 2,
+    entities = [MoviesListEntity::class],
+    autoMigrations = [AutoMigration(
+        from = 1, to = 2, spec = MoviesListDatabase.MyAutoMigration::class
+    )]
 )
 abstract class MoviesListDatabase : RoomDatabase() {
     abstract val moviesListDao: MoviesListDao
@@ -35,9 +32,7 @@ abstract class MoviesListDatabase : RoomDatabase() {
             }
             synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    MoviesListDatabase::class.java,
-                    Constants.DB_NAME
+                    context.applicationContext, MoviesListDatabase::class.java, Constants.DB_NAME
                 ).build()
                 INSTANCE = instance
                 return instance

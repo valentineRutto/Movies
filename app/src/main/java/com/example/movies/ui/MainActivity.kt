@@ -22,9 +22,19 @@ class MainActivity : ComponentActivity() {
 
         //hilt
         //   val moviesViewModel: MoviesViewModel by viewModels()
+        //KOIN
+        //   val moviesViewModel: MoviesViewModel by viewModel()
+
+        //manual
+        //Gets userRepository from the instance of AppContainer in Application
         val repository = (application as ManualApp).manualModule.provideRepository
+
         val moviesViewModel =
-            ViewModelProvider(this, MainViewModelFactory(repository))[MoviesViewModel::class.java]
+            ViewModelProvider(
+                this,
+                MainViewModelFactory(repository)
+            )[MoviesViewModel::class.java]
+
         setContent {
             MoviesTheme {
                 Surface(

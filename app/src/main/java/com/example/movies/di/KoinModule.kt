@@ -13,7 +13,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
-
+//create dependencies needed
 val appModules = module {
     single { KoinApp.INSTANCE }
     single<ApiService> { (get() as Retrofit).create(ApiService::class.java) }
@@ -21,7 +21,7 @@ val appModules = module {
     single {
         createRetrofit(
             baseUrl = Constants.BASE_URL,
-            get()
+            get() //tell koin to look for it
         )
     }
     single {
@@ -39,6 +39,7 @@ val appModules = module {
             moviesListDao = get(),
         )
     }
+    //viewmodel dsl extension to declare viewmodel
     viewModel { MoviesViewModel(moviesListRepository = get()) }
 }
 

@@ -3,6 +3,7 @@ package com.example.movies.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -14,26 +15,27 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.movies.ManualApp
 import com.example.movies.ui.ui.theme.MoviesTheme
 import com.example.movies.utils.MainViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //hilt
-        //   val moviesViewModel: MoviesViewModel by viewModels()
-        //KOIN
+          val moviesViewModel: MoviesViewModel by viewModels()
+        //KOIN  Lazy inject ViewModel
         //   val moviesViewModel: MoviesViewModel by viewModel()
 
         //manual
         //Gets userRepository from the instance of AppContainer in Application
-        val repository = (application as ManualApp).manualModule.provideRepository
-
-        val moviesViewModel =
-            ViewModelProvider(
-                this,
-                MainViewModelFactory(repository)
-            )[MoviesViewModel::class.java]
+      //  val repository = (application as ManualApp).manualModule.provideRepository
+//
+//        val moviesViewModel =
+//            ViewModelProvider(
+//                this,
+//                MainViewModelFactory(repository)
+//            )[MoviesViewModel::class.java]
 
         setContent {
             MoviesTheme {

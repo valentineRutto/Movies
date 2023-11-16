@@ -7,16 +7,18 @@ import androidx.lifecycle.viewModelScope
 import com.example.movies.data.MoviesListRepository
 import com.example.movies.data.local.MoviesListEntity
 import com.example.movies.data.network.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 //Koin &manual viewmodel
-class MoviesViewModel(private val moviesListRepository: MoviesListRepository) :
-    ViewModel() {
-
-//@HiltViewModel
-//class MoviesViewModel @Inject constructor(private val moviesListRepository: MoviesListRepository) :
+//class MoviesViewModel(private val moviesListRepository: MoviesListRepository) :
 //    ViewModel() {
+
+@HiltViewModel
+class MoviesViewModel @Inject constructor(private val moviesListRepository: MoviesListRepository) :
+    ViewModel() {
 
     private val _state = mutableStateOf(MovieUiState())
     val state: State<MovieUiState> = _state

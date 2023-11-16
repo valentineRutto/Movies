@@ -9,26 +9,28 @@ import com.example.movies.utils.Constants
 import okhttp3.OkHttpClient
 
 class ManualContainer(private val context: Context) {
-    val provideOKhttpclient: OkHttpClient by lazy {
+
+    private val provideOKhttpclient: OkHttpClient by lazy {
         RetrofitClient.createOkClient()
     }
-    val retrofit by lazy {
+    private val retrofit by lazy {
         RetrofitClient.createRetrofit(Constants.BASE_URL, provideOKhttpclient)
     }
 
-    val provideRetrofitService: ApiService by lazy {
+    private val provideRetrofitService: ApiService by lazy {
         retrofit.create(ApiService::class.java)
     }
 
-    val provideMoviesDatabase by lazy {
+    private val provideMoviesDatabase by lazy {
         MoviesListDatabase.getDatabase(context)
     }
 
-    val provideMoviesDao by lazy { provideMoviesDatabase.moviesListDao }
+    private val provideMoviesDao by lazy { provideMoviesDatabase.moviesListDao }
 
     val provideRepository by lazy {
         MoviesListRepository(provideRetrofitService, provideMoviesDao)
     }
+
 
 }
 

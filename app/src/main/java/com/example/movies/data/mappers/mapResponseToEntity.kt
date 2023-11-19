@@ -1,7 +1,7 @@
 package com.example.movies.data.mappers
 
-import com.example.movies.data.local.MovieDetailsEntity
-import com.example.movies.data.local.MoviesListEntity
+import com.example.movies.data.local.entities.MovieDetailsEntity
+import com.example.movies.data.local.entities.MoviesListEntity
 import com.example.movies.data.network.model.MovieResponse
 import com.example.movies.data.network.model.PopularMoviesListResponse
 

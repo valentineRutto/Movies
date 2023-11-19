@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.movies.data.local.MoviesListEntity
+import com.example.movies.data.local.entities.MoviesListEntity
 import com.example.movies.databinding.RowMovieBinding
 
 

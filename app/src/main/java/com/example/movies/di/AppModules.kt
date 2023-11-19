@@ -34,6 +34,7 @@ val appModules = module {
     single { get<MoviesListDatabase>().moviesListDao }
 
     single { get<MoviesListDatabase>().movieDetailsDao }
+    single { get<MoviesListDatabase>().remoteKeysDao }
 
     single {
         MoviesListRepository(

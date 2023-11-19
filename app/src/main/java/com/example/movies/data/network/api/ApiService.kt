@@ -9,7 +9,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("/3/movie/popular")
+    @GET("/3/movie/popular?language=en-US")
     suspend fun getMovies(
         @Query("page") page: Int? = null,
         @Query("api_key") apiKey: String

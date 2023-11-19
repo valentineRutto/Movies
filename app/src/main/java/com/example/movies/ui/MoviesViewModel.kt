@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movies.data.MoviesListRepository
-import com.example.movies.data.local.MovieDetailsEntity
-import com.example.movies.data.local.MoviesListEntity
+import com.example.movies.data.local.entities.MovieDetailsEntity
+import com.example.movies.data.local.entities.MoviesListEntity
 import com.example.movies.data.network.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

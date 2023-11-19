@@ -1,9 +1,10 @@
-package com.example.movies.data.local
+package com.example.movies.data.local.dao
 
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
+import com.example.movies.data.local.entities.MoviesListEntity
 
 @Dao
 interface MoviesListDao {

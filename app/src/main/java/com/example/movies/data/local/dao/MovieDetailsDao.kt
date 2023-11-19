@@ -1,8 +1,9 @@
-package com.example.movies.data.local
+package com.example.movies.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
+import com.example.movies.data.local.entities.MovieDetailsEntity
 
 @Dao
 interface MovieDetailsDao {

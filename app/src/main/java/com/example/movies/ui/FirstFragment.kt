@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.movies.R
-import com.example.movies.data.local.MoviesListEntity
+import com.example.movies.data.local.entities.MoviesListEntity
 import com.example.movies.databinding.FragmentFirstBinding
 import com.example.movies.ui.adapters.MoviesAdapter
 import com.example.movies.ui.adapters.onItemClick

@@ -1,10 +1,10 @@
 package com.example.movies.data
 
 import com.example.movies.BuildConfig
-import com.example.movies.data.local.MovieDetailsDao
-import com.example.movies.data.local.MovieDetailsEntity
-import com.example.movies.data.local.MoviesListDao
-import com.example.movies.data.local.MoviesListEntity
+import com.example.movies.data.local.dao.MovieDetailsDao
+import com.example.movies.data.local.dao.MoviesListDao
+import com.example.movies.data.local.entities.MovieDetailsEntity
+import com.example.movies.data.local.entities.MoviesListEntity
 import com.example.movies.data.mappers.mapResponseToEntity
 import com.example.movies.data.mappers.mapResponseToVideoDetailsEntity
 import com.example.movies.data.network.Resource
